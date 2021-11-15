@@ -345,8 +345,7 @@ void checkGlError(const char *file, int line)
 void checkEglError(const char *file, int line)
 //-----------------------------------------------------------------------------
 {
-  for (int i = 0; i < 5; i++) {
-    const EGLint error = eglGetError();
+  for (EGLint error = eglGetError(); error; error = eglGetError()) {
     if (error == EGL_SUCCESS) {
       break;
     }
